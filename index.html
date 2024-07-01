@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+section.modal {
+    background-color: #fff;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+input[type="range"]:hover {
+    opacity: 1;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #006FCF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+.stripe {
+    margin-top: 20px;
+}
+
+#payment-form {
+    margin-top: 20px;
+}
+
+.StripeElement {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#payment-result, #payment-error {
+    display: none;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+#payment-result p {
+    color: green;
+}
+
+#payment-error p {
+    color: red;
+}
+
+.footer-garantias {
+    margin-top: 20px;
+}
+
+.inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.icon--payment svg {
+    display: block;
+    width: 38px;
+    height: 24px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <section class="modal">
+        <form id="payment-form">
+            <h1>Scrapping Google My Business</h1> <img src="https://i.postimg.cc/2SL1Bn8x/gmb-linear.png" style="width: 100%;">
+            <p>Esta herramienta obtiene el nombre de la empresa, teléfono , email (sólo si aparece), dirección  y 
+                se te enviará también los leads via email. Usamos la API oficial de Google My Business que es
+                 la plantilla de las empresas para ser contactadas y posicionar en Google por tanto es totalmente legítimo ponerte en contacto.</p>
+            <label for="keywords" >Escribe las palabras clave</label>
+            <input type="text" id="keywords" name="keywords" placeholder="Ej: Agencia digital en Madrid"> 
+            <label for="leads-range">Selecciona el número de leads:</label>
+            <input type="range" id="leads-range" name="leads" min="200" max="10000" step="1" value="0" list="tickmarks">
+            
+            <div class="range-labels">
+                <span>Leads: <span id="leads-value">0</span></span>
+                <span>Precio: €<span id="price-value">0.00</span></span>
+            </div>
+            <div class="stripe" id="stripe">
+                <form id="payment-form">
+        
+                    <div id="card-element" class="StripeElement StripeElement--empty">
+                        <div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;">
+                            <iframe name="__privateStripeFrame9063" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-3cf392df7d965ee20104e4a622143b8b.html#wait=false&amp;mids[guid]=NA&amp;mids[muid]=3d65bab0-b1d7-4aed-b83a-e14a945a0c3b496d8e&amp;mids[sid]=NA&amp;rtl=false&amp;componentName=card&amp;keyMode=live&amp;apiKey=pk_live_51M9S5DBElJap7B2LOqO3gSkKbkgH0Lo0hez20vDWcpoL8IqqXhzvKXkbe3o5co1F9NR4c3ZrprPysIED3qMRNPvM009v0emWMC&amp;referrer=https%3A%2F%2Fi-clothes.github.io%2Fhome%2Fcheckout.html&amp;controllerId=__privateStripeController9061" title="Campo de entrada seguro para el pago con tarjeta" style="border: 0px !important; margin-top: -4e-05px; margin-right: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; color-scheme: light only !important; height: 16.8px;"></iframe>
+                            <input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: -1px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;">
+                        </div>
+                    </div>
+                    <div id="payment-result" style="display:none">
+                        <p>El pago se ha realizado con éxito.</p>
+                    </div>
+                    <div id="payment-error" style="display: none;">
+                        <p>Hubo un error en el proceso de pago. Por favor, inténtalo nuevamente.</p>
+                    </div>
+                    <button id="submit-button">Realizar Pago</button>
+        
+                    <div class="footer-garantias">
+                        <ul class="inline-list payment-icons footer__section">
+                            <li class="icon--payment">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-american_express"><title id="pi-american_express">American Express</title>
+                                    <g fill="none">
+                                        <path fill="#000" d="M35,0 L3,0 C1.3,0 0,1.3 0,3 L0,21 C0,22.7 1.4,24 3,24 L35,24 C36.7,24 38,22.7 38,21 L38,3 C38,1.3 36.6,0 35,0 Z" opacity=".07"></path>
+                                        <path fill="#006FCF" d="M35,1 C36.1,1 37,1.9 37,3 L37,21 C37,22.1 36.1,23 35,23 L3,23 C1.9,23 1,22.1 1,21 L1,3 C1,1.9 1.9,1 3,1 L35,1"></path>
+                                        <path fill="#FFF" d="M8.971,10.268 L9.745,12.144 L8.203,12.144 L8.971,10.268 Z M25.046,10.346 L22.069,10.346 L22.069,11.173 L24.998,11.173 L24.998,12.412 L22.075,12.412 L22.075,13.334 L25.052,13.334 L25.052,14.073 L27.129,11.828 L25.052,9.488 L25.046,10.346 L25.046,10.346 Z M10.983,8.006 L14.978,8.006 L15.865,9.941 L16.687,8 L27.057,8 L28.135,9.19 L29.25,8 L34.013,8 L30.494,11.852 L33.977,15.68 L29.143,15.68 L28.065,14.49 L26.94,15.68 L10.03,15.68 L9.536,14.49 L8.406,14.49 L7.911,15.68 L4,15.68 L7.286,8 L10.716,8 L10.983,8.006 Z M19.646,9.084 L17.407,9.084 L15.907,12.62 L14.282,9.084 L12.06,9.084 L12.06,13.894 L10,9.084 L8.007,9.084 L5.625,14.596 L7.18,14.596 L7.674,13.406 L10.27,13.406 L10.764,14.596 L13.484,14.596 L13.484,10.661 L15.235,14.602 L16.425,14.602 L18.165,10.673 L18.165,14.603 L19.623,14.603 L19.647,9.083 L19.646,9.084 Z M28.986,11.852 L31.517,9.084 L29.695,9.084 L28.094,10.81 L26.546,9.084 L20.652,9.084 L20.652,14.602 L26.462,14.602 L28.076,12.864 L29.624,14.602 L31.499,14.602 L28.987,11.852 L28.986,11.852 Z"></path>
+                                    </g>
+                                </svg>
+                            </li>
+                            <li class="icon--payment">
+                                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-maestro"><title id="pi-maestro">Maestro</title>
+                                    <path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path>
+                                    <path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path>
+                                    <circle fill="#EB001B" cx="15" cy="12" r="7"></circle>
+                                    <circle fill="#00A2E5" cx="23" cy="12" r="7"></circle>
+                                    <path fill="#7375CF" d="M15 5h8a7 7 0 0 1 0 14h-8A7 7 0 0 0 15 5z"></path>
+                                </svg>
+                            </li>
+                            <li class="icon--payment">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title>
+                                    <g fill="none">
+                                        <rect width="38" height="24" rx="3" fill="#F9F9F9"></rect>
+                                        <circle fill="#EB001B" cx="14" cy="12" r="7"></circle>
+                                        <circle fill="#F79E1B" cx="24" cy="12" r="7"></circle>
+                                        <path fill="#FF5F00" d="M20 12a7 7 0 0 1-7 7 7 7 0 0 1 0-14 7 7 0 0 1 7 7z"></path>
+                                    </g>
+                                </svg>
+                            </li>
+                            <li class="icon--payment">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title>
+                                    <path fill="#1A1F71" d="M35 0H3a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h32a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3z" opacity=".07"></path>
+                                    <path fill="#00579F" d="M35 1a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h32"></path>
+                                    <path fill="#FAA61A" d="M14.9 15h-3l1.7-8h3.1l-1.8 8m7.2-7.7c-.6-.2-1.4-.3-2.4-.3-2.6 0-4.5 1.3-4.5 3.2 0 1.4 1.3 2.2 2.2 2.7.9.4 1.2.6 1.2.9 0 .5-.7.7-1.3.7-.9 0-1.4-.1-2.2-.4l-.3-.1-.3 1.5c.5.2 1.4.4 2.4.4 2.6 0 4.6-1.3 4.6-3.3 0-1.1-.7-2-2.1-2.7-.8-.4-1.2-.6-1.2-.9 0-.3.4-.6 1.2-.6.7 0 1.2.1 1.6.3l.2.1.3-1.4M26.7 9.3l-2.1 5.7-.2-.7c-.4-1.2-1.6-2-2.9-2.3l1.9-5.1h3.2M29.8 8h-2c-.6 0-1 .2-1.2.8l-3.6 8.2h2.5s.4-1.1.5-1.3h3.1c.1.3.3 1.3.3 1.3h2.2L29.8 8m-8.7 1.6l-.5 1.3c-.6-.3-1.3-.5-2-.5-1.1 0-2.4.4-2.4 1.5 0 .7.7 1 1.4 1.3l.6.3c1.1.5 2.2 1.1 2.2 2.5 0 1.8-1.4 2.8-3.2 2.8-.8 0-1.6-.2-2.4-.5l.5-1.7c.6.4 1.3.5 2 .6.9 0 1.4-.3 1.4-.9 0-.7-.5-.9-1.4-1.3l-.6-.2c-1.1-.5-2.1-1.1-2.1-2.5 0-1.7 1.3-2.8 3.1-2.8.8 0 1.5.2 2.2.4M10.6 8.2l-2.9 7.5-.3-1.5c-.5-1.5-2-3.2-3.6-4l2.6 7.6h3.1L12.2 8H10.6"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                        <ul class="list-no-bullets site-footer__list inline-list payment-icons"></ul>
+                    </div>
+                </form>
+            </div>
+        </form>   
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const leadsRange = document.getElementById("leads-range");
+    const leadsValue = document.getElementById("leads-value");
+    const priceValue = document.getElementById("price-value");
+
+    function updateValues() {
+        const leads = parseInt(leadsRange.value);
+        const price = (leads * 0.05).toFixed(2);
+        leadsValue.textContent = leads;
+        priceValue.textContent = price;
+    }
+
+    leadsRange.addEventListener("input", updateValues);
+
+    // Inicializa los valores al cargar la página
+    updateValues();
+});
+
+    </script>
+</body>
+</html>
